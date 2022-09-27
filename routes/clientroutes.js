@@ -20,10 +20,10 @@ router.get("/client",async(req,res)=>{
 })
 
 router.post("/client/register", async(req,res)=>{
-    let password = ""
-    await bcrypt.hash(req.body.password, 10).then(function(hash) {
-        password = hash
-    });
+    // let password = ""
+    // await bcrypt.hash(req.body.password, 10).then(function(hash) {
+    //     password = hash
+    // });
     new clientSchema({
         name: req.body.name,
         surname: req.body.surname,
@@ -31,7 +31,7 @@ router.post("/client/register", async(req,res)=>{
         cell: req.body.cell,
         address: req.body.address,
         coordinates: req.body.coordinates,
-        password: password
+        password: req.body.password
     }).save((err,docs)=>{
         if(!err){
             res.json(docs)
