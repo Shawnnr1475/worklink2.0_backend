@@ -5,6 +5,7 @@ const mongoose =  require("mongoose")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const clientRoutes =  require("./routes/clientroutes")
+const expertRoutes = require("./routes/expertrotes")
 const dotenv = require("dotenv")
 dotenv.config()
 const ConnectToDB = async()=>{
@@ -20,6 +21,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(clientRoutes)
+app.use(expertRoutes)
 
 app.listen(PORT, ()=>{
     ConnectToDB()
