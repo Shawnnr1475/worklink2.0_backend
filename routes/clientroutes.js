@@ -13,7 +13,7 @@ router.get("/client",async(req,res)=>{
             res.json(docs)
         }
         else{
-            res.status = 404
+            res.status(404)
             res.json({message:"Not found"})
         }
     })
@@ -29,13 +29,13 @@ router.post("/client/signin" , async(req,res)=>{
                         res.json(docs)
                     }
                     else{
-                        res.status = 401 
+                        res.status(401) 
                         res.json({message:"Unauthorized"})
                     }
                 });
             }
             else if(docs === {}){
-                res.status = 404
+                res.status(404)
                 res.json({message:"Not found"})
             }
         })
