@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
  
 // create an schema
 var expertSchema = new mongoose.Schema({
+            profilepic:{
+                type:String
+            },
             name: {
                 type: String,
                 required: true 
