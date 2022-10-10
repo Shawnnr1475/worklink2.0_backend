@@ -36,6 +36,10 @@ var expertSchema = new mongoose.Schema({
             date:{
                 type: Date,
                 default: Date.now()
+            },
+            occupation:{
+                type: String,
+                require: true
             }
         });
  
