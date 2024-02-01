@@ -16,7 +16,7 @@ router.get("/",(req,res)=>{
 })
 
 router.get("/client",async(req,res)=>{
-    clientSchema.find({email:"radebeshawn@gmail.com"},(err,docs)=>{
+    clientSchema.find({email:"radebeshawnn@gmail.com"},(err,docs)=>{
         if(!err){
             res.json(docs)
         }
@@ -38,7 +38,7 @@ router.post("/client/signin" , async(req,res)=>{
                     }
                     else{
                         res.status(401) 
-                        res.json({message:"Unauthorized"})
+                        res.json({message:err})
                     }
                 });
             }
