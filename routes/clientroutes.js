@@ -4,11 +4,19 @@ const bcrypt =  require("bcrypt")
 const clientSchema = require("../models/clientmodel")
 
 router.get("/",(req,res)=>{
-    res.json("Hello world")
+    clientSchema.find({},(err,docs)=>{
+        if(!err){
+            res.json(docs)
+        }
+        else{
+            res.status(404)
+            res.json({message:"Database offline"})
+        }
+    })
 })
 
 router.get("/client",async(req,res)=>{
-    clientSchema.find({email:req.body.email},(err,docs)=>{
+    clientSchema.find({email:"radebeshawn@gmail.com"},(err,docs)=>{
         if(!err){
             res.json(docs)
         }
@@ -34,7 +42,7 @@ router.post("/client/signin" , async(req,res)=>{
                     }
                 });
             }
-            else if(docs === {}){
+            else if(docs == {}){
                 res.status(404)
                 res.json({message:"Not found"})
             }
