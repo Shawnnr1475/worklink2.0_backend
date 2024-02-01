@@ -29,30 +29,27 @@ router.get("/client",async(req,res)=>{
 })
 
 router.post("/client/signin" , async(req,res)=>{
-    clientSchema.findOne({email:req.body.email},(err,docs)=>{
-        res.send(docs)
-    })
-    // try{
-    //     clientSchema.findOne({email:req.body.email},(err,docs)=>{
-    //         if(!err){
-    //             bcrypt.compare(req.body.password, docs.password, function(err, result) {
-    //                 if(result){
-    //                     res.json(docs)
-    //                 }
-    //                 else{
-    //                     res.status(401) 
-    //                     res.json({message:err})
-    //                 }
-    //             });
-    //         }
-    //         else if(docs == {}){
-    //             res.status(404)
-    //             res.json({message:"Not found"})
-    //         }
-    //     })
-    // }catch(err){
-    //     console.log(err)
-    // }
+    try{
+        clientSchema.findOne({email:req.body.email},(err,docs)=>{
+            if(!err){
+                bcrypt.compare(req.body.password, docs.password, function(err, result) {
+                    if(result){
+                        res.json(docs)
+                    }
+                    else{
+                        res.status(401) 
+                        res.json({message:err})
+                    }
+                });
+            }
+            else if(docs == {}){
+                res.status(404)
+                res.json({message:"Not found"})
+            }
+        })
+    }catch(err){
+        console.log(err)
+    }
 })
 
 router.post("/client/register", async(req,res)=>{
